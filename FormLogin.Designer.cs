@@ -88,6 +88,7 @@
             btnLogin.TabIndex = 4;
             btnLogin.Text = "Войти";
             btnLogin.UseVisualStyleBackColor = false;
+            btnLogin.Click += BtnLogin_Click;
             // 
             // txtPassword
             // 
@@ -104,7 +105,6 @@
             lbPassword.Size = new Size(58, 19);
             lbPassword.TabIndex = 2;
             lbPassword.Text = "Пароль";
-            lbPassword.Click += label2_Click;
             // 
             // txtLogin
             // 
@@ -121,7 +121,6 @@
             lbLogin.Size = new Size(52, 19);
             lbLogin.TabIndex = 0;
             lbLogin.Text = "Логин";
-            lbLogin.Click += label1_Click;
             // 
             // FormLogin
             // 
