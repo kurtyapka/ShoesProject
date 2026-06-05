@@ -1,12 +1,5 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
-using ShoesProject.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using ShoesProject.Models;
 using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 
 namespace ShoesProject
 {

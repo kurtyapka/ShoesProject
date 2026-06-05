@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace ShoesProject.Models;
+﻿namespace ShoesProject.Models;
 
 public partial class Order
 {
@@ -19,11 +16,11 @@ public partial class Order
 
     public int IdStatuses { get; set; }
 
-    public virtual DeliveryPoint IdDeliveryPointNavigation { get; set; } = null!;
+    public virtual DeliveryPoint DeliveryPoint { get; set; } = null!;
 
-    public virtual Status IdStatusesNavigation { get; set; } = null!;
+    public virtual Status Status { get; set; } = null!;
 
-    public virtual User IdUserNavigation { get; set; } = null!;
+    public virtual User User { get; set; } = null!;
 
     public virtual ICollection<ProductsOrder> ProductsOrders { get; set; } = new List<ProductsOrder>();
 }
