@@ -118,7 +118,7 @@ public partial class ShopDbContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Art).HasColumnName("art");
-            entity.Property(e => e.CointInStock).HasColumnName("coint_in_stock");
+            entity.Property(e => e.CointInStock).HasColumnName("count_in_stock");
             entity.Property(e => e.Description).HasColumnName("description");
             entity.Property(e => e.Discount).HasColumnName("discount");
             entity.Property(e => e.IdCategory).HasColumnName("id_category");
