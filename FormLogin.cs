@@ -1,4 +1,5 @@
-﻿using ShoesProject.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using ShoesProject.Models;
 using System.Data;
 
 namespace ShoesProject
@@ -6,11 +7,13 @@ namespace ShoesProject
     public partial class FormLogin : Form
     {
         public ShoesProject.Models.User CurrentUser { get; private set; }
-        public bool isGuest { get; private set; }
+        public bool IsGuest { get; private set; }
 
         public FormLogin()
         {
             InitializeComponent();
+
+            btnGuessed.Click += BtnGuest_Click;
         }
 
         private void BtnLogin_Click(object sender, EventArgs e)
@@ -22,16 +25,21 @@ namespace ShoesProject
                 return;
             }
 
-            using (var db = new ShopDbContext())
+            var optionsBuilder = new DbContextOptionsBuilder<ShopDbContext>();
+            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=shop_db;Username=postgres;Password=1111");
+            using (var db = new ShopDbContext(optionsBuilder.Options))
             {
+                string loginInput = txtLogin.Text.Trim();
+                string passwordInput = txtPassword.Text.Trim();
+
                 var user = db.Users
-                    .Where(w => w.Login == txtLogin.Text && w.Pass == txtPassword.Text)
-                    .FirstOrDefault();
+                    .AsEnumerable()
+                    .FirstOrDefault(w => w.Login.Trim() == loginInput && w.Pass.Trim() == passwordInput);
 
                 if (user != null)
                 {
                     CurrentUser = user;
-                    isGuest = false;
+                    IsGuest = false;
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
@@ -42,10 +50,11 @@ namespace ShoesProject
                 }
             }
         }
+
         private void BtnGuest_Click(object sender, EventArgs e)
         {
             CurrentUser = null;
-            isGuest = true;
+            IsGuest = true;
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
